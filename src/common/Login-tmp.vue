@@ -45,12 +45,10 @@
           api.login(this.loginData).then(res=>{
             console.log("res",res);
             if(res.data.code=="0000") {
-              this.$cookies.remove("JSESSIONID",'/power/',false);
-              this.$cookies.set("JSESSIONID",res.headers.session_id,false,'/power/',false,false);
-              sessionStorage.setItem("user",JSON.stringify(res.data));
+
               this.$store.commit('refreshToken',res.headers.token);
               this.$router.push({path: '/admin'});
-              this.$message.error(res.data.message);
+
             }
             // console.log(this.$cookies.get("JSESSIONID"));
             // console.log("清除cookie------",this.$cookies.remove("JSESSIONID",'/admin/',false));
